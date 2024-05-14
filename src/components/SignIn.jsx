@@ -15,6 +15,7 @@ const SignIn = () => {
             <p>Forgot password</p>
             <p>New to flix? Sign In</p>
           </form>
+          
 
     </div>
   )
