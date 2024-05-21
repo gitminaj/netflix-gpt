@@ -1,10 +1,10 @@
 
 const validateInfo = (email, password) =>{
 
-    const emailPattern = /^[a-zA-Z0-9. _%+-]+@[a-zA-Z0-9. -]+\\. [a-zA-Z]{2,}$/.test(email);
-    const passwordPattern = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/.test(password)
-    if(!emailPattern) return <h3>invalid email</h3>;
-    if(!passwordPattern) return <h3>invalid password</h3>;
+    const emailPattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email);
+    const passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/.test(password)
+    if(!emailPattern) return "invalid email";
+    if(!passwordPattern) return "invalid password";
 }
 
 export default validateInfo;

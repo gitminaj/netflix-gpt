@@ -1,9 +1,17 @@
 import Header from "./Header";
-import { useState } from "react";
+import { useState, useRef } from "react";
+import validateInfo from "../utils/validate";
 
 const SignIn = () => {
-
   const [loginState, setLoginState] = useState(true)
+
+  const email = useRef(null);
+  const password = useRef(null);
+
+  const handleClick = () =>{
+    const msg = validateInfo(email.current.value,password.current.value)
+
+  }
 
   const toggleLogin = () =>{
     setLoginState(!loginState);
@@ -19,12 +27,12 @@ const SignIn = () => {
          <Header className="absolute top-0" />
 
 
-          <form className="bg-black absolute top-[10vw] left-[35vw] text-white flex flex-col w-[30%] h-[60%] rounded justify-around align-center items-center bg-opacity-80">
+          <form onSubmit={(e) => e.preventDefault() } className="bg-black absolute top-[10vw] left-[35vw] text-white flex flex-col w-[30%] h-[60%] rounded justify-around align-center items-center bg-opacity-80">
             <h1 className="text-2xl font-bold p-2">{loginState ? "Sign In" : "Sign Up"}</h1>
             {loginState ? "" : <input className="m-2 p-2 rounded text-white w-[80%] bg-black bg-opacity-25 border border-white" type="text" placeholder="Name"/>}
-            <input className="m-2 p-2 rounded text-white w-[80%] bg-black bg-opacity-25 border border-white" type="email" placeholder="Email"/>
-            <input className="m-2 p-2 rounded text-white w-[80%] bg-black bg-opacity-25 border border-white" type="password" placeholder="Password"/>
-            <button className="m-2 p-2 rounded bg-red-600 w-[80%]">Sign In</button>
+            <input ref={email} className="m-2 p-2 rounded text-white w-[80%] bg-black bg-opacity-25 border border-white" type="email" placeholder="Email"/>
+            <input ref={password} className="m-2 p-2 rounded text-white w-[80%] bg-black bg-opacity-25 border border-white" type="password" placeholder="Password"/>
+            <button onClick={handleClick} className="m-2 p-2 rounded bg-red-600 w-[80%]">Sign In</button>
             <p> {loginState ? "Forgot password" : ""}</p>
             <p className="cursor-pointer" onClick={toggleLogin}>New to flix? {loginState ? "Sign In" : "Sign Up"}</p>
           </form>
