@@ -1,7 +1,7 @@
+import { getAuth, createUserWithEmailAndPassword,signInWithEmailAndPassword } from "firebase/auth";
 import Header from "./Header";
 import { useState, useRef } from "react";
 import validateInfo from "../utils/validate";
-import { getAuth,createUserWithEmailAndPassword } from "firebase/auth";
 
 
 
@@ -17,25 +17,42 @@ const SignIn = () => {
 
     const msg = validateInfo(email.current.value,password.current.value)
     console.log(msg)
+    setError(msg)
     if(msg) return;
 
     if(!loginState){
 
-    const auth = getAuth()
-    createUserWithEmailAndPassword(auth, email.current.value,password.current.value)
+    const auth = getAuth();
+    createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
       .then((userCredential) => {
         // Signed up 
         const user = userCredential.user;
-        console.log(user)
+        console.log(user);
         // ...
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        setError(errorMessage)
-        console.log(errorCode - errorMessage)
+        setError(errorMessage +"error")
+        console.log(error)
         // ..
       });
+    }else{
+
+const auth = getAuth();
+signInWithEmailAndPassword(auth, email.current.value, password.current.value)
+  .then((userCredential) => {
+    // Signed in 
+    const user = userCredential.user;
+    console.log(user)
+    // ...
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    setError(errorMessage)
+    console.log(errorMesssage)
+  });
     }
 
   }
@@ -72,9 +89,6 @@ const SignIn = () => {
 
 
 
-
-
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 // TODO: Add SDKs for Firebase products that you want to use
@@ -83,13 +97,13 @@ import { getAnalytics } from "firebase/analytics";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyACta6fzMNKyD0FAr-rpAWUPvNsvXNF9VM",
-  authDomain: "binge-flix-1986c.firebaseapp.com",
-  projectId: "binge-flix-1986c",
-  storageBucket: "binge-flix-1986c.appspot.com",
-  messagingSenderId: "595826465571",
-  appId: "1:595826465571:web:79adae551390588756ca96",
-  measurementId: "G-2TXMCCXQR3"
+  apiKey: "AIzaSyDXaZI27MAVoTor31T5I8-NlGihAY-z1rE",
+  authDomain: "namaste-ba435.firebaseapp.com",
+  projectId: "namaste-ba435",
+  storageBucket: "namaste-ba435.appspot.com",
+  messagingSenderId: "300159273620",
+  appId: "1:300159273620:web:b13fde8c71bae3242c0281",
+  measurementId: "G-7JJDJ65LRX"
 };
 
 // Initialize Firebase
