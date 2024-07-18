@@ -6,6 +6,7 @@ import validateInfo from "../utils/validate";
 
 
 const SignIn = () => {
+  const navigate = useNavigate();
   const [loginState, setLoginState] = useState(true)
   const [error, setError] = useState(null)
 
@@ -14,7 +15,6 @@ const SignIn = () => {
   const name = useRef("Default")
 
   const handleClick = () =>{
-
     const msg = validateInfo(email.current.value,password.current.value)
     console.log(msg)
     setError(msg)
@@ -28,6 +28,7 @@ const SignIn = () => {
         // Signed up 
         const user = userCredential.user;
         console.log(user);
+        navigate("/browse")
         // ...
       })
       .catch((error) => {
@@ -35,6 +36,7 @@ const SignIn = () => {
         const errorMessage = error.message;
         setError(errorMessage +"error")
         console.log(error)
+        navigate("/")
         // ..
       });
     }else{
@@ -45,6 +47,7 @@ signInWithEmailAndPassword(auth, email.current.value, password.current.value)
     // Signed in 
     const user = userCredential.user;
     console.log(user)
+    navigate("/browse")
     // ...
   })
   .catch((error) => {
@@ -53,7 +56,7 @@ signInWithEmailAndPassword(auth, email.current.value, password.current.value)
     setError(errorMessage)
     console.log(errorMesssage)
   });
-    }
+}
 
   }
 
@@ -91,6 +94,7 @@ signInWithEmailAndPassword(auth, email.current.value, password.current.value)
 
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
+import { useNavigate } from "react-router-dom";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
