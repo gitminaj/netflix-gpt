@@ -29,12 +29,12 @@ const auth = getAuth();
 onAuthStateChanged(auth, (user) => {
   if (user) {
     const {uid,email,displayName} = user;
-    dispatch(addUser({uid : uid, email: email}))
+    dispatch(addUser({uid : uid, email: email, displayName: displayName}))
 
     // ...
   } else {
     // User is signed out
-    dispatch(removeUser());
+    dispatch(removeUser);
   }
 });
   },[])

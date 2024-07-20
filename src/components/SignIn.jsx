@@ -1,7 +1,9 @@
-import { getAuth, createUserWithEmailAndPassword,signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword,signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import Header from "./Header";
 import { useState, useRef } from "react";
 import validateInfo from "../utils/validate";
+
+
 
 
 
@@ -19,16 +21,25 @@ const SignIn = () => {
     console.log(msg)
     setError(msg)
     if(msg) return;
-
+    
     if(!loginState){
-
-    const auth = getAuth();
-    createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
+      
+      const auth = getAuth();
+      createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
       .then((userCredential) => {
         // Signed up 
         const user = userCredential.user;
+        updateProfile(auth.currentUser, {
+          displayName: name.current.value 
+        }).then(() => {
+          navigate("/browse")
+          // Profile updated!
+          // ...
+        }).catch((error) => {
+          // An error occurred
+          // navigate("</error>")
+        });
         console.log(user);
-        navigate("/browse")
         // ...
       })
       .catch((error) => {
