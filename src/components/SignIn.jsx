@@ -26,30 +26,30 @@ const SignIn = () => {
       
       const auth = getAuth();
       createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
-      .then((userCredential) => {
-        // Signed up 
-        const user = userCredential.user;
-        updateProfile(auth.currentUser, {
-          displayName: name.current.value 
-        }).then(() => {
-          navigate("/browse")
-          // Profile updated!
-          // ...
-        }).catch((error) => {
-          // An error occurred
-          // navigate("</error>")
+        .then((userCredential) => {
+            // Signed up 
+            const user = userCredential.user;
+            updateProfile(auth.currentUser, {
+              displayName: name.current.value 
+            }).then(() => {
+              navigate("/browse")
+              // Profile updated!
+              // ...
+            }).catch((error) => {
+              // An error occurred
+              // navigate("</error>")
+            });
+            console.log(user);
+            // ...
+          })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setError(errorMessage +"error")
+          console.log(error)
+          navigate("/")
+          // ..
         });
-        console.log(user);
-        // ...
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        setError(errorMessage +"error")
-        console.log(error)
-        navigate("/")
-        // ..
-      });
     }else{
 
 const auth = getAuth();
