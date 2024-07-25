@@ -1,10 +1,12 @@
 import { getAuth, signOut } from "firebase/auth";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 
 const Header = () => {
 const navigate = useNavigate();
 const auth = getAuth();
+const user = useSelector( store => store.user) 
 
  const handleSignout = () => {
 
@@ -26,7 +28,7 @@ const auth = getAuth();
       </div>
 
       <div>
-        <p className=" cursor-pointer font-semibold p-2" onClick={handleSignout}>Sign Out</p>
+        {( user && <p className=" cursor-pointer font-semibold p-2" onClick={handleSignout}>Sign Out</p>)}
 
       </div>
 

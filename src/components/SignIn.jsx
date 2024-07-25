@@ -91,9 +91,9 @@ signInWithEmailAndPassword(auth, email.current.value, password.current.value)
             <input ref={email} className="m-2 p-2 rounded text-white w-[80%] bg-black bg-opacity-25 border border-white" type="email" placeholder="Email"/>
             <input ref={password} className="m-2 p-2 rounded text-white w-[80%] bg-black bg-opacity-25 border border-white" type="password" placeholder="Password"/>
             {error ? <p className="text-red-600 font-bold"> **{error} </p> : null} 
-            <button onClick={handleClick} className="m-2 p-2 rounded bg-red-600 w-[80%]">{loginState ? "Sign up" : "Sign In"}</button>
+            <button onClick={handleClick} className="m-2 p-2 rounded bg-red-600 w-[80%]">{loginState ? "Sign In" : "Sign up"}</button>
             <p> {loginState ? "Forgot password" : ""}</p>
-            <p className="cursor-pointer" onClick={toggleLogin}>{loginState ? "New to flix? Sign In" : "Already registered? Sign Up"}</p>
+            <p className="cursor-pointer" onClick={toggleLogin}>{loginState ? "New to flix? Sign Up" : "Already registered? Sign In"}</p>
           </form>
           
 
