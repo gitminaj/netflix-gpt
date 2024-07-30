@@ -1,36 +1,62 @@
-import { getAuth, signOut } from "firebase/auth";
-import { useSelector } from "react-redux";
+import { getAuth, signOut, onAuthStateChanged } from "firebase/auth";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { addUser, removeUser } from "../utils/userSlice";
+import { LOGO } from "../utils/constant";
 
 
 const Header = () => {
+const dispatch = useDispatch();
 const navigate = useNavigate();
 const auth = getAuth();
-const user = useSelector( store => store.user) 
+const user = useSelector( store => store?.user) 
 
- const handleSignout = () => {
+const handleSignout = () => {
 
    signOut(auth).then(() => {
      navigate("/signin")
    }).catch((error) => {
      navigate("/error")
    });
-
  }
+
+useEffect( () =>{
+
+  const auth = getAuth();
+  const unsubscribe = onAuthStateChanged(auth, (user) => {
+    if (user) {
+      const {uid,email,displayName} = user;
+      dispatch(addUser({uid : uid, email: email, displayName: displayName}));
+      navigate("/browse");
+      // ...
+    } else {
+      // User is signed out
+      dispatch(removeUser);
+      navigate("/")
+    }
+  });
+
+  return () => unsubscribe();
+
+    },[])
+
+
 
   return (
     <div className=" flex justify-between">
       <div className="logo">
         <img
           className="absolute top-0 w-40"
-          src="https://cdn.cookielaw.org/logos/dd6b162f-1a32-456a-9cfe-897231c7763c/4345ea78-053c-46d2-b11e-09adaef973dc/Netflix_Logo_PMS.png"
+          src={LOGO}
         ></img>
       </div>
 
-      <div>
-        {( user && <p className=" cursor-pointer font-semibold p-2" onClick={handleSignout}>Sign Out</p>)}
 
-      </div>
+      { user && <div>
+         <p className=" cursor-pointer font-semibold p-2" onClick={handleSignout}>Sign Out</p>
+
+      </div>}
 
     </div>
   );
