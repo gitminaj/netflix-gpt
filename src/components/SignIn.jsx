@@ -144,24 +144,30 @@ const SignIn = () => {
   );
 };
 
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
+
+
+// sdk file
+
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyDXaZI27MAVoTor31T5I8-NlGihAY-z1rE",
-  authDomain: "namaste-ba435.firebaseapp.com",
-  projectId: "namaste-ba435",
-  storageBucket: "namaste-ba435.appspot.com",
-  messagingSenderId: "300159273620",
-  appId: "1:300159273620:web:b13fde8c71bae3242c0281",
-  measurementId: "G-7JJDJ65LRX",
+  apiKey: "AIzaSyBL2MqlARZsmfxu4xQs9K4RIphYPBwP9uY",
+  authDomain: "entertainment-e0fb3.firebaseapp.com",
+  projectId: "entertainment-e0fb3",
+  storageBucket: "entertainment-e0fb3.appspot.com",
+  messagingSenderId: "70064480481",
+  appId: "1:70064480481:web:5187da58752c73207e97a0",
+  measurementId: "G-6947PV2MV4"
 };
 
 // Initialize Firebase

@@ -44,7 +44,7 @@ useEffect( () =>{
 
 
   return (
-    <div className=" flex justify-between">
+    <div className=" flex justify-between mb-6">
       <div className="logo">
         <img
           className="absolute top-0 w-40"
