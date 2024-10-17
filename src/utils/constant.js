@@ -11,3 +11,7 @@ export const API_OPTIONS = {
     Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhYmUxMmM4ZWU2MGM4NTlhMWEwMzU0NmRjYmVlMDAxYyIsIm5iZiI6MTcyMjk1MDI0MS43MTQzNDMsInN1YiI6IjY2YTkxY2U2NWU0ZDZhZWNiZmRmMDdhYyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.UybGozHewitB0TlJ5KoRezUIRNfhutAylQY-SR5E2a0'
   }
 };
+
+export const MOVIE_POSTER_URL = "https://media.themoviedb.org/t/p/w220_and_h330_face";
+
+

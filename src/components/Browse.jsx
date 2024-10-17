@@ -1,11 +1,22 @@
 import { useEffect, useState } from "react";
 import Header from "./Header";
 import { API_OPTIONS } from "../utils/constant"; 
-import { CardMovie } from "./CardMovie"
+import MovieCard from "./MovieCard";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 
 
 const Browse = () => {
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 7,
+    slidesToScroll: 1
+  };
 
   const[nowPlayingMovie,setNowPlayingMovie] = useState()
 
@@ -21,7 +32,6 @@ const Browse = () => {
   };
 
   
-
   useEffect(()=>{
     nowPlayingMovies();
   },[]);
@@ -32,16 +42,20 @@ const Browse = () => {
       <Header></Header>
       <div className="m-6">
         <h1 className="font-bold p-6">Latest Movie</h1>
-        <div>
-          {
-            nowPlayingMovie?.results?.map( (movies,index)=>{
-              
-              return(
-                <h1> display </h1>
-                // <MovieCard key={movies.results[index].id} movies={movies} />
-              )
-            })
-          }
+
+        <div >
+          <Slider {...settings} className="text-black" >
+            {
+              nowPlayingMovie?.results?.map( (movies,index)=>{
+                return(
+      
+                    <MovieCard key={movies.id} movies={movies}/>
+
+                )
+              })
+            }
+          </Slider>
+
         </div>
       </div>
 
